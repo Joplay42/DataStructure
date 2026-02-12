@@ -14,15 +14,8 @@ class LinkedList:
             print(currentNode.value, end=" -> ")
             currentNode = currentNode.next
             
-    def insert(self, position, value):
-        newNode = Node(value)
-        
-        if position == 1:
-            newNode.next = self.head
-            self.head = newNode
-            
-        
-        self.size += 1
+    def insert(head, position, value):
+        pass
         
         
     def isListEmpty(self):
@@ -33,13 +26,16 @@ class LinkedList:
             
 myLinkedList = LinkedList()
 
-myLinkedList.insert(1, "A")
-myLinkedList.insert(1, "B")
-myLinkedList.insert(1, "C")
+node1 = Node("A")
+node2 = Node("B")
+node3 = Node("C")
+node4 = Node("D")
 
-print(myLinkedList.traverseAndPrint())
-
-myLinkedList.insert(2, "Z")
+myLinkedList.head = node1
+myLinkedList.size = 4
+node1.next = node2
+node2.next = node3
+node3.next = node4
 
 print(myLinkedList.traverseAndPrint())
 

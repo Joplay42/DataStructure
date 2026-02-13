@@ -42,6 +42,30 @@ class BinarySearchTree:
             current = current.left
         return current
     
+    def remove(self, node, data):
+        if not node:
+            return None
+        
+        if data < node.data:
+            node.left = self.remove(node.left, data)
+        elif data > node.data:
+            node.right = self.remove(node.right, data)
+        else:
+            if not node.left:
+                temp = node.right
+                node = None
+                return temp
+            elif not node.right:
+                temp = node.left
+                node = None
+                return temp
+                
+            node.data = self.minValue(node.right).data
+            node.right = self.remove(node.right, node.data)
+        
+        return node
+        
+    
 myBinaryTree = BinarySearchTree()
 root = Node(13)
 myBinaryTree.root = root
@@ -61,14 +85,8 @@ node4.right = node6
 
 myBinaryTree.inOrdertraversal(root)
 
-myBinaryTree.insert(root, 12)
 
+removedNode = myBinaryTree.remove(root, 19)
+removedNode = myBinaryTree.remove(root, 8)
 print()
-myBinaryTree.inOrdertraversal(root)
-
-foundNode = myBinaryTree.search(root, 7)
-print()
-print(f"Found: {foundNode.data}")
-
-minNode = myBinaryTree.minValue(root)
-print(f"Min: {minNode.data}")
+print(myBinaryTree.inOrdertraversal(root))
